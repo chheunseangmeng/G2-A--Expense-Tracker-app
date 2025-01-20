@@ -1,0 +1,77 @@
+.form {
+    display: flex;
+    justify-content: space-around;
+    /* flex-direction: column; */
+  }
+  
+  .input, .select {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .input:focus, .select:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+
+.table-container {
+    margin-top: 20px;
+    overflow-x: auto; /* Prevents horizontal overflow */
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Ensures equal column widths */
+  }
+  
+  .table th, .table td {
+    padding: 10px; /* Adjust padding for better spacing */
+    text-align: left;
+    border: 1px solid #ddd;
+    word-wrap: break-word; /* Ensures content wraps instead of overflowing */
+    text-align: center; /* Centers text in cells */
+  }
+  
+  .table th {
+    background-color: #f8f9fa;
+  }
+  
+  .table td {
+    background-color: #ffffff;
+  }
+  
+  /* Make sure actions column width is fixed */
+  .table .actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 200px; /* Set a fixed width for the actions column */
+  }
+  
+  /* Ensure buttons have a fixed width */
+  .edit-btn, .delete-btn {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 80px; /* Set fixed width */
+    text-align: center;
+  }
+  
+  .delete-btn {
+    background-color: red;
+  }
+  
+  .edit-btn:hover {
+    background-color: darkblue;
+  }
+  
+  .delete-btn:hover {
+    background-color: darkred;
+  }
