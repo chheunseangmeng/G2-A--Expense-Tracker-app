@@ -428,65 +428,7 @@ span {
   position: relative;
 }
 
-
-
 /* sweet alert */
-  
-.card-section {
-  display: flex;
-  justify-content: space-around;
-  gap: 20px;
-}
-
-.card {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 20px;
-  text-align: center;
-  width: 200px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.card h2 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.card .amount {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.card .add-amount {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.card .add-amount:hover {
-  background-color: #45a049;
-}
-
-/* Unique colors for each card */
-#income-card {
-  background-color: #e0ffe0;
-}
-
-#expense-card {
-  background-color: #ffe0e0;
-}
-
-#savings-card {
-  background-color: #e0e0ff;
-}
-
-
 .custom-image {
   border-radius: 50%;  /* Makes the border circular */
   border: 3px solid #2d8730;
@@ -497,8 +439,6 @@ span {
   border: 3px solid red;
   padding: 10px; 
 }
-
-
 /* Logout button */
 #logoutBtn {
   margin-top: 20px;

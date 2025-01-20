@@ -5,22 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Expense Tracker App</title>
     <!-- Link CSS & JavaScript-->
-    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="../css/style.css" />
     <script src="../pages/acc.js" defer></script>
     <!-- Font Awesome -->
     <link
-      rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     />
     <!-- SweetAlert CDN -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
 
-    <link rel="stylesheet" href="../pages/acc.css">
+    <link rel="stylesheet" href="../pages/acc.css" />
     <script src="../pages/acc.js" defer></script>
-
 
     <!-- firebase link database -->
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
 
   <body>
@@ -31,7 +35,7 @@
           <span class="span-expense">Expense</span>
         </div>
         <div class="pages">
-          <div class="page-icon ">
+          <div class="page-icon">
             <i class="fa-solid fa-list icon"></i>
             <p><a href="../index.html">DASHBOARD</a></p>
           </div>
@@ -42,10 +46,6 @@
           <div class="page-icon active">
             <i class="fa-solid fa-user icon"></i>
             <p><a href="./account.html">ACCOUNT</a></p>
-          </div>
-          <div class="page-icon">
-            <i class="fa-solid fa-paperclip icon"></i>
-            <p><a href="#">REPORT</a></p>
           </div>
           <div class="page-icon">
             <i class="fa-solid fa-gear icon"></i>
@@ -60,16 +60,15 @@
           <div class="profile-home">
             <img src="../Images/profile-none.png" alt="" />
             <div class="morning">
-                <p>Good morning <span>User</span></p>
-                <p>Let's manage your wallet finance</p>
-              </div>
+              <p>Good morning <span>User</span></p>
+              <p>Let's manage your wallet finance</p>
+            </div>
           </div>
           <div class="summary">
-            
-            <div class="card">
+            <div class="card" id="the-total-card">
               <h5>Total Saving</h5>
               <p id="total-saving" class="fw-bold text-success">$0.00</p>
-              <div id="saving-input-container" style="display: none;">
+              <div id="saving-input-container" style="display: none">
                 <input
                   type="number"
                   id="saving-input"
@@ -77,23 +76,24 @@
                   placeholder="Enter Amount"
                 />
                 <button id="add-saving-btn" class="btn">Add</button>
-                <button id="cancel-saving-btn" class="btn btn-cancel">Cancel</button>
+                <button id="cancel-saving-btn" class="btn btn-cancel">
+                  Cancel
+                </button>
               </div>
               <button id="show-input-btn" class="btn">Add Saving</button>
             </div>
 
-            <div class="card">
+            <div class="card" id="the-income-card">
               <h5>Total Income</h5>
               <p id="total-income" class="fw-bold text-success">$0.00</p>
             </div>
-            <div class="card">
+            <div class="card" id="the-expense-card">
               <h5>Total Expenses</h5>
               <p id="total-expenses" class="fw-bold text-danger">$0.00</p>
             </div>
           </div>
         </div>
-       
-        
+
         <div class="container-account">
           <div id="app-content" class="app-content">
             <!-- Transaction Form -->
@@ -139,8 +139,35 @@
               <div>
                 <button type="submit" class="btn">Add</button>
               </div>
+              <!-- Button to show the report -->
+              <div>
+                <button type="submit" class="btn-report" id="btn-report">
+                  Report
+                </button>
+              </div>
+
+              <!-- Chart container with cancel button -->
+              <div id="chart-container" style="display: none">
+                <!-- Cancel button (X) -->
+                <button
+                  id="btn-cancel"
+                  class="btn-cancel"
+                  style="
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    font-size: 30px;
+                    cursor: pointer;
+                  "
+                >
+                  &times;
+                </button>
+
+                <!-- Canvas for chart -->
+                <canvas id="myChart"></canvas>
+              </div>
             </form>
-        
+
             <!-- Transactions Table -->
             <div class="table-container">
               <table class="table">
