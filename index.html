@@ -5,22 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Expense Tracker App</title>
     <!-- Link CSS & JavaScript-->
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="./JS/main.js" defer></script>
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    />
-    <!-- SweetAlert CDN -->
+    <link rel="stylesheet" href="./css/style.css"/> 
+    <script src="./JS/main.js" defer></script>  
+    <!-- Font Awesome --> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+    <!-- SweetAlert CDN --> 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    />
-  </head>
 
-  <body>
+    <!-- firebase link database -->   
+    <script type="module" src="../JS/firebase.js" defer></script>
+  </head> 
+        
+  <body> 
     <div class="container-website">
       <div class="left-side">
         <div class="expense-title">
@@ -34,15 +30,11 @@
           </div>
           <div class="page-icon">
             <i class="fa-solid fa-money-bill-transfer icon"></i>
-            <p><a href="#">TRANSACTION</a></p>
+            <p><a href="./pages/transaction.html">TRANSACTION</a></p>
           </div>
           <div class="page-icon">
             <i class="fa-solid fa-user icon"></i>
-            <p><a href="#">ACCOUNT</a></p>
-          </div>
-          <div class="page-icon">
-            <i class="fa-solid fa-money-check-dollar icon"></i>
-            <p><a href="#">BUDGETS</a></p>
+            <p><a href="./pages/account.html">ACCOUNT</a></p>
           </div>
           <div class="page-icon">
             <i class="fa-solid fa-paperclip icon"></i>
@@ -56,6 +48,9 @@
         <button class="btn-2">
           <a href="#" style="text-decoration: none">Create Account</a>
         </button>
+        <div class="log-out">
+          <button id="logoutBtn">Log Out</button>
+      </div>
       </div>
       <div class="right-side">
         <h1>DASHBOARD</h1>
@@ -94,7 +89,7 @@
 
           <button>Sign Up</button>
         </form>
-      </div>
+      </div>    
       <div class="form-container sign-in">
         <form>
           <h1>Sign In</h1>

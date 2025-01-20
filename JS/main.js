@@ -1,3 +1,4 @@
+// Switch form in sign in and sign up
 const container = document.getElementById("container");
 const registerBtn = document.getElementById("register");
 const loginBtn = document.getElementById("login");
@@ -35,72 +36,78 @@ document.addEventListener("click", (event) => {
     containerWebsite.classList.remove("blur"); // Remove blur effect when modal is hidden
   }
 });
+// -------------------------------------------------------------------------------------
 
-//store the data when the user input
-const signUpForm = document.querySelector(".form-container.sign-up form"); // The sign-up form
+//store the data when the user input (sign up)
+const signUpForm = document.querySelector(".form-container.sign-up form");
 const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
+const profileImg = document.querySelector(".profile-home img");
+const morningMessage = document.querySelector(".morning span");
 
-// Event listener to handle form submission
+// Handle form submission
 signUpForm.addEventListener("submit", (event) => {
-  event.preventDefault(); // Prevent form submission to the server
+  event.preventDefault(); // Prevent the form from submitting
 
-  // Get the values from the input fields
+  // Get user inputs
   const name = nameInput.value;
   const email = emailInput.value;
   const password = passwordInput.value;
 
-  // Get the existing users from localStorage
-  let users = JSON.parse(localStorage.getItem("users")) || []; // If no users exist, default to an empty array
-
-  // Check if the email already exists in localStorage
-  const emailExists = users.some((user) => user.email === email);
-
-  // Check if the password already exists in any existing user (passwords should be unique)
-  const passwordExists = users.some((user) => user.password === password);
-
-  // If the email or password exists, show an error message
-  if (emailExists) {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "This email is already associated with an account. Please use a different email.",
-    });
-    return; // Stop further execution if email exists
-  }
-
-  if (passwordExists) {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "This password is already in use. Please choose a different password.",
-    });
-    return; // Stop further execution if password exists
-  }
-
-  // If email and password are unique, create a new user object
-  const newUser = {
-    name,
-    email,
-    password,
-  };
-
-  // Add the new user to the users array
+  // Save user data to localStorage
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+  const newUser = { name, email, password, profilePic: null };
   users.push(newUser);
-
-  // Save the updated users array to localStorage
   localStorage.setItem("users", JSON.stringify(users));
 
-  // Show SweetAlert success message
+  // Display the username in the greeting message
+  morningMessage.textContent = name;
+
+  // Optionally: Show success message using SweetAlert
   Swal.fire({
-    icon: "success",
+    imageUrl: '../Images//tickk.png',
+    imageWidth: 80,
+    imageHeight: 80,
+    customClass: {image: 'custom-image'},
     title: "Account created!",
-    text: "Your account has been created successfully!",
+    text: "Your account has been created successfully!"
   });
 });
 
-// Select the sign-in form and input fields
+// Profile image upload functionality
+const profileInput = document.createElement("input");
+profileInput.type = "file";
+profileInput.accept = "image/*";
+
+// Append the profile image input to the profile section
+const profileContainer = document.querySelector(".profile-home");
+profileContainer.addEventListener("click", () => {
+  profileInput.click(); // Trigger file input when profile container is clicked
+});
+
+// Handle image selection
+profileInput.addEventListener("change", (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      // Set the profile image to the selected image
+      profileImg.src = reader.result;
+
+      // Update the user's profile image in localStorage
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+      const currentUser = users.find(user => user.name === morningMessage.textContent);
+      if (currentUser) {
+        currentUser.profilePic = reader.result;
+        localStorage.setItem("users", JSON.stringify(users));
+      }
+    };
+    reader.readAsDataURL(file); // Convert the image to base64 for display
+  }
+});
+
+// Select the sign-in form and input fields (sign in)
 const signInForm = document.querySelector(".form-container.sign-in form");
 const signInEmailInput = signInForm.querySelector('input[type="email"]');
 const signInPasswordInput = signInForm.querySelector('input[type="password"]');
@@ -124,7 +131,12 @@ signInForm.addEventListener("submit", (event) => {
   if (validUser) {
     // Show a success message and redirect to the dashboard
     Swal.fire({
-      icon: "success",
+      imageUrl: '../Images//tickk.png',
+      imageWidth: 80, 
+      imageHeight: 80,
+      customClass: {
+        image: 'custom-image' // Applying a custom class to the image
+      },
       title: "Welcome back successful log in!",
       text: `Hello, ${validUser.name}! You have successfully logged in.`,
     }).then(() => {
@@ -134,10 +146,37 @@ signInForm.addEventListener("submit", (event) => {
   } else {
     // Show an error message if the credentials are incorrect
     Swal.fire({
-      icon: "error",
+      imageUrl: '../Images//delete.png',
+      imageWidth: 80, 
+      imageHeight: 80,
+      customClass: {image: 'custom-image-delete'},
       title: "Login Failed",
-      text: "Invalid email or password. Please try again.",
+      text: "Invalid email or password. Please try again."
     });
   }
+});
+
+
+
+// log out form 
+document.getElementById("logoutBtn").addEventListener("click", function() {
+  // Show confirmation before logging out
+  Swal.fire({
+      title: "Are you sure?",
+      text: "You will be logged out from your account.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, log out!"
+  }).then((result) => {
+      if (result.isConfirmed) {
+          // Clear the current logged-in user data from localStorage
+          localStorage.removeItem("loggedInUser");
+
+          // Redirect to login page
+          window.location.href = "../pages/account.html";
+      }
+  });
 });
 
