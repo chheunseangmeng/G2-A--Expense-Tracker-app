@@ -3,28 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Expense Tracker App</title>
+    <title>Account page</title>
     <!-- Link CSS & JavaScript-->
-    <link rel="stylesheet" href="../css/style.css" />
-    <script src="../pages/acc.js" defer></script>
+    <link rel="stylesheet" href="../../css/style.css" />
     <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
     <!-- SweetAlert CDN -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    />
-
-    <link rel="stylesheet" href="../pages/acc.css" />
-    <script src="../pages/acc.js" defer></script>
-
-    <!-- firebase link database -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+    <link rel="stylesheet" href="./acc.css" />
+    <script src="./acc.js" defer></script>
+    <!-- chart js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Include jQuery (since Notify.js depends on it) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include Notify.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+
+    <link rel="icon" href="../../images/user-icon.png">
+
   </head>
 
   <body>
@@ -37,15 +34,15 @@
         <div class="pages">
           <div class="page-icon">
             <i class="fa-solid fa-list icon"></i>
-            <p><a href="../index.html">DASHBOARD</a></p>
+            <p><a href="../../index.html">DASHBOARD</a></p>
           </div>
           <div class="page-icon">
             <i class="fa-solid fa-money-bill-transfer icon"></i>
-            <p><a href="./transaction.html">TRANSACTION</a></p>
+            <p><a href="../transaction/transaction.html">TRANSACTION</a></p>
           </div>
           <div class="page-icon active">
             <i class="fa-solid fa-user icon"></i>
-            <p><a href="./account.html">ACCOUNT</a></p>
+            <p><a href="../account/account.html">ACCOUNT</a></p>
           </div>
           <div class="page-icon">
             <i class="fa-solid fa-gear icon"></i>
@@ -58,7 +55,7 @@
         <h1>ACCOUNT</h1>
         <div class="user-account">
           <div class="profile-home">
-            <img src="../Images/profile-none.png" alt="" />
+            <img src="../../images/profile-none.png" alt="" />
             <div class="morning">
               <p>Good morning <span>User</span></p>
               <p>Let's manage your wallet finance</p>

@@ -175,8 +175,13 @@ document.getElementById("logoutBtn").addEventListener("click", function() {
           localStorage.removeItem("loggedInUser");
 
           // Redirect to login page
-          window.location.href = "../pages/account.html";
+          window.location.href = "../pages/account/account.html";
       }
   });
 });
+
+
+
+// Dark mode 
+
 

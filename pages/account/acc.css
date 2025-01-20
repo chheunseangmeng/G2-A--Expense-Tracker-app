@@ -44,13 +44,11 @@ h2 {
   border: 1px solid #ccc;
   border-radius: 5px;
 }
-
 .input:focus,
 .select:focus {
   outline: none;
   border-color: #007bff;
 }
-
 .btn {
   padding: 12px;
   background-color: #007bff;
@@ -60,18 +58,22 @@ h2 {
   cursor: pointer;
   width: 100px;
 }
-
 .btn:hover {
   background-color: #0056b3;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 .btn-report {
   padding: 12px;
-  background-color: rgb(5, 193, 5);
-  color: white;
+  background-color: rgb(253, 148, 9);
+  color: #000;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   width: 100px;
+}
+.btn-report:hover{
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  background: rgb(220, 127, 6) ;
 }
 
 #saving-input {
@@ -130,8 +132,8 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #ddd;
   border-radius: 8px;
+  box-shadow: 0 2px 2px gray;
 }
 
 #the-total-card{
@@ -151,8 +153,12 @@ h2 {
     background-position: 0 50%;
   }
 }
-
-
+#the-income-card{
+  background: #f0f0f0;
+}
+#the-expense-card{
+  background:   rgb(246, 179, 179);
+}
 .fw-bold {
   font-weight: bold;
   font-size: 2rem;

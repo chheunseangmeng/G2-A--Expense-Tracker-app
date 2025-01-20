@@ -109,7 +109,7 @@
 
       // Show success message
       Swal.fire({
-        imageUrl: "../Images/tickk.png",
+        imageUrl: "../../images/tickk.png",
         imageWidth: 80,
         imageHeight: 80,
         customClass: { image: "custom-image" },
@@ -119,7 +119,7 @@
     } else {
       // Show error message
       Swal.fire({
-        imageUrl: "../Images/delete.png",
+        imageUrl: "../../images/delete.png",
         imageWidth: 80,
         imageHeight: 80,
         customClass: { image: "custom-image-delete" },
@@ -129,7 +129,7 @@
     }
   });
 
-  // Expense Submission Function
+  // // Expense Submission Function
   transactionForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -139,7 +139,7 @@
 
     if (!category || isNaN(expenseAmount) || expenseAmount <= 0 || !month) {
       Swal.fire({
-        imageUrl: "../Images/delete.png",
+        imageUrl: "../../images/delete.png",
         imageWidth: 80,
         imageHeight: 80,
         customClass: { image: "custom-image-delete" },
@@ -151,7 +151,7 @@
 
     if (expenseAmount > totalSaving) {
       Swal.fire({
-        imageUrl: "../Images/delete.png",
+        imageUrl: "../../images/delete.png",
         imageWidth: 80,
         imageHeight: 80,
         customClass: { image: "custom-image-delete" },
@@ -173,7 +173,7 @@
       }; // Include the month
       editId = null;
       Swal.fire({
-        imageUrl: "../Images/tickk.png",
+        imageUrl: "../../images/tickk.png",
         imageWidth: 80,
         imageHeight: 80,
         customClass: { image: "custom-image" },
@@ -189,7 +189,7 @@
       }; // Include the month
       transactions.push(transaction);
       Swal.fire({
-        imageUrl: "../Images/tickk.png",
+        imageUrl: "../../images/tickk.png",
         imageWidth: 80,
         imageHeight: 80,
         customClass: { image: "custom-image" },
@@ -211,6 +211,7 @@
     updateUI();
     transactionForm.reset();
   });
+
 
   // Edit Transaction Function
   function editTransaction(id) {
@@ -254,7 +255,7 @@
         updateUI();
 
         Swal.fire({
-          imageUrl: "../Images/tickk.png",
+          imageUrl: "../../images/tickk.png",
           imageWidth: 80,
           imageHeight: 80,
           customClass: { image: "custom-image" },
