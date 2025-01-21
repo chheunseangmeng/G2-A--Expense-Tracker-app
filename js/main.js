@@ -104,7 +104,6 @@ signUpForm.addEventListener("submit", (event) => {
     imageWidth: 80,
     imageHeight: 80,
     customClass: {image: 'custom-image'},
-    icon: "success",
     title: "Account created!",
     text: "Your account has been created successfully!",
   });
@@ -140,7 +139,6 @@ signInForm.addEventListener("submit", (event) => {
       customClass: {
         image: 'custom-image' // Applying a custom class to the image
       },
-      icon: "success",
       title: "Welcome back successful log in!",
       text: `Hello, ${validUser.name}! You have successfully logged in.`,
     }).then(() => {
@@ -154,7 +152,6 @@ signInForm.addEventListener("submit", (event) => {
       imageWidth: 80, 
       imageHeight: 80,
       customClass: {image: 'custom-image-delete'},
-      icon: "error",
       title: "Login Failed",
       text: "Invalid email or password. Please try again.",
     });

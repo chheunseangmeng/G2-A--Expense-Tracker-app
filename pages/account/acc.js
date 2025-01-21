@@ -1,4 +1,3 @@
-
 const totalSavingElement = document.getElementById("total-saving");
 const totalIncomeElement = document.getElementById("total-income");
 const totalExpensesElement = document.getElementById("total-expenses");
@@ -358,4 +357,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return months[monthNumber - 1];
   }
 });
+
+
+
+
 

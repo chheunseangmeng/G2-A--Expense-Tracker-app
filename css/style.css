@@ -428,7 +428,7 @@ span {
 #logoutBtn{
   background: red;
   padding: 10px;
-  margin-top: 10px;
+  margin-top: 20px;
   width: 130px;
   border: none;
   font-size: 17px;
@@ -450,3 +450,4 @@ span {
   padding: 5px;
   border-radius: 50px;
 }
+

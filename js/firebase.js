@@ -1,5 +1,6 @@
 // Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
 
 // Firebase configuration
@@ -14,6 +15,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth();
 const db = getDatabase(app);
 
 // Select form elements
@@ -35,19 +37,35 @@ signUpButton.addEventListener("click", (e) => {
     return;
   }
 
-  // Ensure input is stored in Firebase
-  set(ref(db, "users/" + name), {
-    username: name,
-    email: email,
-    password: password // Not recommended to store passwords like this (use Firebase Auth instead)
-  })
-    .then(() => {
-      return ref(db, "users/" + name);
+  // Use Firebase Authentication to create a new user
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // User created successfully, now store additional profile data in Realtime Database
+      const user = userCredential.user;
+
+      // Store user profile data in Realtime Database
+      return set(ref(db, "users/" + user.uid), {
+        username: name,
+        email: email,
+        password: password,  // Storing password in the Realtime Database (Not recommended)
+        profilePicture: "default.png", // You can set a default profile picture or leave it empty
+      });
     })
-    .then((userRef) => {
+    .then(() => {
+      // If data is saved successfully, show success message
       alert("User registered successfully and data saved in Firebase!");
     })
     .catch((error) => {
-      alert("Error: " + error.message);
+      // Firebase Authentication error handling
+      console.error("Error:", error.message);
+      
+      // Handle authentication or database errors
+      if (error.code === "auth/email-already-in-use") {
+        alert("This email is already registered. Please try a different one.");
+      } else if (error.code === "auth/invalid-email") {
+        alert("Invalid email format. Please check your email.");
+      } else {
+        alert("Error: " + error.message);
+      }
     });
 });
