@@ -1,0 +1,267 @@
+/* General Layout */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container-account {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .auth-section,
+  .app-content {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form {
+    display: flex;
+    justify-content: space-around;
+    /* flex-direction: column; */
+  }
+  
+  .input,
+  .select {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .input:focus,
+  .select:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+  .btn {
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+  }
+  .btn:hover {
+    background-color: #0056b3;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  }
+  .btn-report {
+    padding: 12px;
+    background-color: rgb(253, 148, 9);
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+  }
+  .btn-report:hover{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    background: rgb(220, 127, 6) ;
+  }
+  
+  #saving-input {
+    width: 150px;
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  #add-saving-btn,
+  #cancel-saving-btn {
+    padding: 6px 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 70px;
+  }
+  
+  #add-saving-btn:hover {
+    background-color: #218838;
+  }
+  
+  #show-input-btn {
+    padding: 6px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #show-input-btn:hover {
+    background-color: #0056b3;
+  }
+  #cancel-saving-btn {
+    background: red;
+  }
+  .btn-cancel:hover {
+    background-color: #c82333;
+  }
+  
+  .summary {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    width: 60%;
+    gap: 20px;
+  }
+  .card {
+    background-color: #f1f1f1;
+    padding: 20px;
+    width: 48%;
+    line-height: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 2px gray;
+  }
+  
+  #the-total-card{
+    background: linear-gradient( -45deg, rgba(247,234,163,1), rgba(236,180,238,0.56) , rgba(163,203,247,1)  );
+    /* background-image: linear-gradient( 102.4deg,  rgba(253,189,85,1) 7.8%, rgba(249,131,255,1) 100.3% ); */
+    animation: color 2s ease-in-out infinite;
+    background-size: 300% 300%;
+  }
+  @keyframes color{
+    0%{
+      background-position: 0 50%;
+    }
+    50%{
+      background-position: 100% 50%;
+    }
+    100%{
+      background-position: 0 50%;
+    }
+  }
+  #the-income-card{
+    background: #f0f0f0;
+  }
+  #the-expense-card{
+    background:   rgb(246, 179, 179);
+  }
+  .fw-bold {
+    font-weight: bold;
+    font-size: 2rem;
+  }
+  .text-success {
+    color: #28a745;
+  }
+  
+  .text-danger {
+    color: #dc3545;
+  }
+  
+  .table-container {
+    margin-top: 20px;
+    overflow-x: auto; /* Prevents horizontal overflow */
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Ensures equal column widths */
+  }
+  
+  .table th,
+  .table td {
+    padding: 10px; /* Adjust padding for better spacing */
+    text-align: left;
+    border: 1px solid #ddd;
+    word-wrap: break-word; /* Ensures content wraps instead of overflowing */
+    text-align: center; /* Centers text in cells */
+  }
+  
+  .table th {
+    background-color: #f8f9fa;
+  }
+  
+  .table td {
+    background-color: #ffffff;
+  }
+  
+  /* Make sure actions column width is fixed */
+  .table .actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 200px; /* Set a fixed width for the actions column */
+  }
+  
+  /* Ensure buttons have a fixed width */
+  .edit-btn,
+  .delete-btn {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 80px; /* Set fixed width */
+    text-align: center;
+  }
+  
+  .delete-btn {
+    background-color: red;
+  }
+  
+  .edit-btn:hover {
+    background-color: darkblue;
+  }
+  
+  .delete-btn:hover {
+    background-color: darkred;
+  }
+  
+  #chart-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%; /* Set the width to 90% of the screen */
+    max-width: 900px; /* Optional: you can set a max-width if you want */
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: none; /* Initially hidden */
+  }
+  
+  #btn-cancel {
+    background: none;
+    border: none;
+    color: #000;
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  .custom-image{
+    border: 3px solid green; 
+    padding: 5px;
+    border-radius: 50px;
+  }
+  .custom-image-delete{
+    border: 3px solid rgb(184, 0, 0); 
+    padding: 5px;
+    border-radius: 50px;
+  }
+  
