@@ -1,0 +1,133 @@
+/* General Reset */
+* {
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+     font-family: Arial, sans-serif;
+   }
+   .container-website {
+     display: flex;
+     height: 100vh;
+     width: 100%;
+   }
+   /* Left Side Navigation */
+   .left-side {
+     width: 20%;
+     background-color: #f4f4f4;
+     padding: 20px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     border-right: 1px solid #ddd;
+   }
+   .left-side i,
+   span {
+     font-weight: bold;
+     color: #000;
+     margin-top: 30px;
+     font-size: 2rem;
+     margin-left: 5px;
+   }
+   .pages a {
+     text-decoration: none;
+     color: #000;
+     width: 100%;
+     margin-left: 50px;
+   }
+   .pages {
+     margin-top: 50px;
+     width: 100%;
+   }
+   .pages p {
+     font-size: 16px;
+     display: flex;
+     align-items: center;
+     cursor: pointer;
+     padding: 10px;
+     border-radius: 5px;
+     color: #000;
+     margin-top: 20px;
+     padding-left: 20px;
+     width: 100%; /* Ensure the paragraph takes up the full width of the parent */
+     box-sizing: border-box; /* Include padding in the width calculation */
+     transition: all 0.2s ease-in-out;
+   }
+   .pages i {
+     font-size: 18px;
+     position: absolute;
+     margin-top: 10px;
+     margin-left: 30px;
+   }
+   .pages p:hover {
+     background-color: #e7e7e7;
+   }
+   .active {
+     background: #e7e7e7;
+     border-radius: 10px;
+   }
+   .btn-2 {
+     margin-top: 4vh;
+     border: none;
+     padding: 15px 20px;
+     text-align: center;
+     transition: 0.5s;
+     font-size: 1rem;
+     background-size: 200% auto;
+     color: white;
+     box-shadow: 0 0 20px #eee;
+     border-radius: 10px;
+     background-image: linear-gradient(
+       to right,
+       #00d2ff 0%,
+       #3a7bd5 51%,
+       #00d2ff 100%
+     );
+   }
+   .btn-2:hover {
+     background-position: right center; /* change the direction of the change here */
+     color: #fff;
+     text-decoration: none;
+     box-shadow: 0 5px 5px gray;
+     cursor: pointer;
+   }
+   /* Right Side Dashboard */
+   .right-side {
+     width: 80%;
+     padding: 20px;
+     background-color: #fff;
+   }
+   .right-side h1 {
+     text-align: center;
+     padding: 20px;
+     background: #000;
+     font-size: 2rem;
+     border-radius: 10px;
+     background: linear-gradient(90deg, #2736df, #29c9f5);
+     color: #fff;
+   }
+   .user-account {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin-bottom: 20px;
+     padding: 20px 20px;
+   }
+   .profile-home {
+     display: flex;
+     gap: 20px;
+   }
+   .profile-home img {
+     width: 70px;
+     height: 75px;
+     border-radius: 50%;
+     margin-bottom: 10px;
+   }
+   .profile-home p {
+     margin: 5px 0;
+     color: #555;
+   }
+   .profile-home span {
+     font-weight: bold;
+     color: #000;
+   }
+
