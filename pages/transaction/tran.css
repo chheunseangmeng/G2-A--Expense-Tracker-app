@@ -93,3 +93,36 @@
   .delete-btn:hover {
     background-color: darkred;
   }  
+
+  @media screen and (max-width: 820px) {
+    .container-website {
+      flex-direction: row; /* Stack elements for better readability */
+   }
+   .card{
+    width: 32%;
+   }
+   .fw-bold{
+    font-size: 30px;
+   }
+  .edit-btn{
+    font-size: 12px;
+    padding: 6px;
+    width: 40px;
+  }
+  .delete-btn{
+    font-size: 12px;
+    padding: 6px;
+    width: 40px;
+  }
+  .form{
+    display: flex;
+    gap: 10px;
+  
+   }
+   button[type="submit"]{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
