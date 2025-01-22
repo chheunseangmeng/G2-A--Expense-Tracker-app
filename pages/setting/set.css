@@ -224,3 +224,16 @@ input[type="password"]:focus {
   background-color: #003d80; /* Darken the button background when clicked */
   transform: scale(0.98); /* Add a slight shrinking effect */
 }
+
+@media screen and (max-width:820px) {
+  #settingForm {
+    margin-left: 0;
+    width: 100%;
+    padding: 20px;
+    border-radius: 0;
+    box-shadow: none;
+    max-width: none;
+    background-color: #f4f4f4;
+    
+  }
+}
