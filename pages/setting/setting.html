@@ -51,25 +51,26 @@
         <h1>DASHBOARD</h1>
         <div class="login_form">
           <!-- Login form container -->
-          <form action="#">
-            <h3>SETTING</h3>
-            <!-- Email input box -->
-            <div class="input_box">
-              <label for="email">Change Name</label>
-              <input type="email" id="email" placeholder="Enter new name" required />
-            </div>
-            <!-- Paswwrod input box -->
-            <div class="input_box">
-              <div class="password_title">
-                <label for="password">New Password</label>
-                <a href="#">Use Old Password?</a>
+           <div class="setting-form">
+            <h2>SETTING</h2>
+            <form id="settingForm">
+              <div class="setting-form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
               </div>
-              <input type="password" id="password" placeholder="Enter your password" required />
-            </div>
-             <!-- Login button -->
-            <button type="submit">Log In</button>
-            <p class="sign_up">Don't have an account? <a href="#">Sign up</a></p>
-          </form>
+              <div class="setting-form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+              </div>
+              <div class="setting-form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+              </div>
+              <div class="setting-form-group">
+                <button type="submit" class="btn-1">Update</button>
+              </div>
+            </form>
+           </div>
         </div>
       </div>
     </div>
