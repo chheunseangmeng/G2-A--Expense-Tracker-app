@@ -33,8 +33,6 @@ cancelSavingButton.addEventListener("click", () => {
   savingInput.value = "";
 });
 
-
-// Update UI with Checkbox Event (When Clicked, Deduct from Savings/Income)
 function updateUI() {
   totalSavingElement.textContent = `$${totalSaving.toFixed(2)}`;
   totalIncomeElement.textContent = `$${totalIncome.toFixed(2)}`;
@@ -46,10 +44,10 @@ function updateUI() {
     const row = document.createElement("tr");
 
     row.innerHTML = `
-      <td><input type="checkbox" class="category-checkbox" data-id="${transaction.id}" ${transaction.deducted ? 'checked' : ''}></td>
-      <td>${transaction.category}</td>
-      <td>$${transaction.amount.toFixed(2)}</td>
-      <td>${getMonthName(transaction.month)}</td>
+      <td><input type="checkbox" class="category-checkbox" data-id="${transaction.id}" ${transaction.checked ? 'checked' : ''}></td>
+      <td>${transaction.category}</td> 
+      <td>$${transaction.amount.toFixed(2)}</td> 
+      <td>${getMonthName(transaction.month)}</td> 
       <td>
         <button class="btn edit-btn" onclick="editTransaction(${transaction.id})">
           <i class="fa-solid fa-pen-to-square"></i>
@@ -60,39 +58,38 @@ function updateUI() {
       </td>
     `;
 
-    // Add event listener to checkbox
-    const checkbox = row.querySelector(".category-checkbox");
-    checkbox.addEventListener("change", (event) => {
-      const isChecked = event.target.checked;
-      const transactionId = event.target.dataset.id;
-      const transaction = transactions.find((t) => t.id === transactionId);
+    const checkbox = row.querySelector('.category-checkbox');
+    checkbox.addEventListener('change', (e) => {
+      const transactionId = e.target.dataset.id;
+      const transaction = transactions.find(t => t.id == transactionId);
 
-      if (isChecked && !transaction.deducted) {
-        // Deduct from savings and income when checked
+      // Update the transaction's checked state
+      transaction.checked = e.target.checked;
+
+      // Subtract from saving and income when checked
+      if (e.target.checked) {
         totalSaving -= transaction.amount;
         totalIncome -= transaction.amount;
-        transaction.deducted = true; // Mark as deducted
-      } else if (!isChecked && transaction.deducted) {
-        // Add back to savings and income when unchecked
+        totalExpenses += transaction.amount;  // Add the amount to expenses
+      } else {
         totalSaving += transaction.amount;
         totalIncome += transaction.amount;
-        transaction.deducted = false; // Mark as not deducted
+        totalExpenses -= transaction.amount;  // Subtract the amount from expenses
       }
 
       // Save updated data to localStorage
       localStorage.setItem("transactions", JSON.stringify(transactions));
       localStorage.setItem("totalSaving", totalSaving);
       localStorage.setItem("totalIncome", totalIncome);
+      localStorage.setItem("totalExpenses", totalExpenses);
 
-      // Update UI
+      // Update the UI
       updateUI();
     });
 
     transactionList.appendChild(row);
   });
 }
-
-
 updateUI();
 
 // Helper function to convert month number to month name
@@ -155,13 +152,40 @@ addSavingButton.addEventListener("click", () => {
 });
 
 
-// Expense Submission Function
+
 transactionForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
+  // Get text from the elements and remove the "$" sign
+  const savingText = document.getElementById("total-saving").innerText.trim();
+  const incomeText = document.getElementById("total-income").innerText.trim();
+
+  // Convert to numbers (remove $ and parse as float)
+  const savingAmount = parseFloat(savingText.replace("$", "")) || 0;
+  const incomeAmount = parseFloat(incomeText.replace("$", "")) || 0;
+
+  console.log("Saving Amount:", savingAmount, "Income Amount:", incomeAmount); // Debugging
+
+
+  if (savingAmount === 0 || incomeAmount === 0) {
+    Swal.fire({
+      imageUrl: "../../image/delete.png",
+      imageWidth: 80,
+      imageHeight: 80,
+      customClass: { image: "custom-image-delete" },
+      title: "Error",
+      text: "You cannot add an expense because Savings and Income are empty or zero. Please add money first.",
+    });
+    return; // Stop function execution
+  }
+
+  // Get expense details
   const expenseAmount = parseFloat(transactionAmountInput.value);
   const category = transactionCategoryInput.value;
   const month = transactionMonthInput.value;
+
+  console.log("Expense Details:", { category, expenseAmount, month }); // Debugging
+
 
   if (!category || isNaN(expenseAmount) || expenseAmount <= 0 || !month) {
     Swal.fire({
@@ -170,84 +194,71 @@ transactionForm.addEventListener("submit", (event) => {
       imageHeight: 80,
       customClass: { image: "custom-image-delete" },
       title: "Error",
-      text: "Please fill in all fields correctly",
+      text: "Please fill in all fields correctly.",
     });
-    return;
+    return; // Stop function execution
   }
 
-  // Add expense to table but don't subtract from saving/income yet
-  const transaction = {
-    id: Date.now(),
-    category,
-    amount: expenseAmount,
-    month,
-  };
 
-  transactions.push(transaction);
 
-  // Save updated data to localStorage without affecting savings/income
+  if (expenseAmount > savingAmount) {
+    Swal.fire({
+      imageUrl: "../../image/delete.png",
+      imageWidth: 80,
+      imageHeight: 80,
+      customClass: { image: "custom-image-delete" },
+      title: "Error",
+      text: "You don't have enough money for adding!",
+    });
+    return; // Stop function execution
+  }
+
+  const transactionId = transactionForm.dataset.transactionId;
+  let transaction;
+
+  if (transactionId) {
+    // Editing an existing transaction
+    transaction = transactions.find((t) => t.id == transactionId);
+    if (transaction) {
+      transaction.category = category;
+      transaction.amount = expenseAmount;
+      transaction.month = month;
+      console.log("Transaction Updated:", transaction); // Debugging
+    }
+  } else {
+    // Creating a new transaction
+    transaction = {
+      id: Date.now(),
+      category,
+      amount: expenseAmount,
+      month,
+    };
+    transactions.push(transaction);
+    console.log("New Transaction Added:", transaction); // Debugging
+  }
+
   localStorage.setItem("transactions", JSON.stringify(transactions));
 
   updateUI();
+  console.log("UI Updated!"); // Debugging
   transactionForm.reset();
+  delete transactionForm.dataset.transactionId;
 });
-
-// Update UI to display checkbox for each expense
-function updateUI() {
-  totalSavingElement.textContent = `$${totalSaving.toFixed(2)}`;
-  totalIncomeElement.textContent = `$${totalIncome.toFixed(2)}`;
-  totalExpensesElement.textContent = `$${totalExpenses.toFixed(2)}`;
-
-  transactionList.innerHTML = "";
-
-  transactions.forEach((transaction) => {
-    const row = document.createElement("tr");
-
-    row.innerHTML = `
-      <td><input type="checkbox" class="category-checkbox" data-id="${transaction.id}"></td>
-      <td>${transaction.category}</td> 
-      <td>$${transaction.amount.toFixed(2)}</td> 
-      <td>${getMonthName(transaction.month)}</td> 
-      <td>
-        <button class="btn edit-btn" onclick="editTransaction(${transaction.id})">
-          <i class="fa-solid fa-pen-to-square"></i>
-        </button>
-        <button class="btn delete-btn" onclick="deleteTransaction(${transaction.id})">
-          <i class="fa-solid fa-trash-can"></i>
-        </button>
-      </td>
-    `;
-
-    // Add checkbox event listener to subtract from saving/income when checked
-    const checkbox = row.querySelector(".category-checkbox");
-    checkbox.addEventListener("change", () => {
-      if (checkbox.checked) {
-        totalSaving -= transaction.amount;
-        totalIncome -= transaction.amount;
-        totalExpenses += transaction.amount;
-
-        // Save updated data to localStorage after checkbox is checked
-        localStorage.setItem("totalSaving", totalSaving);
-        localStorage.setItem("totalIncome", totalIncome);
-        localStorage.setItem("totalExpenses", totalExpenses);
-
-        updateUI(); // Update UI to reflect new totals
-      }
-    });
-
-    transactionList.appendChild(row);
-  });
-}
+// ----------------------------------------------------------------------------------------------------------------------
 
 
+// Example of setting the form for editing an existing transaction
+function editTransaction(transactionId) {
+  const transaction = transactions.find(t => t.id === transactionId);
+  if (transaction) {
+    // Fill in the form with the existing transaction data
+    transactionCategoryInput.value = transaction.category;
+    transactionAmountInput.value = transaction.amount;
+    transactionMonthInput.value = transaction.month;
 
-// Edit Transaction Function
-function editTransaction(id) {
-  const transaction = transactions.find((transaction) => transaction.id === id);
-  transactionCategoryInput.value = transaction.category;
-  transactionAmountInput.value = transaction.amount;
-  transactionMonthInput.value = transaction.month; // Set the month in the form
-  editId = id;
+    // Set the form's data-transaction-id for identification
+    transactionForm.dataset.transactionId = transaction.id;
+  }
 }
 
 // Delete Transaction Function with SweetAlert Confirmation
@@ -296,8 +307,6 @@ function deleteTransaction(id) {
 
 // Initialize UI
 updateUI();
-
-
 
 // to display the chart 
 document.addEventListener("DOMContentLoaded", () => {
@@ -385,8 +394,3 @@ document.addEventListener("DOMContentLoaded", () => {
     return months[monthNumber - 1];
   }
 });
-
-
-
-
-

@@ -265,6 +265,18 @@ body {
     border-radius: 50px;
   }
   
+  #chart-container {
+    position: absolute;
+    top: 50px; /* Adjust position */
+    left: 50px; /* Adjust position */
+    background: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    z-index: 1000; /* Ensure it stays on top */
+    display: none;
+  }
+  
+
   @media screen and (max-width: 820px) {
     .container-website {
       flex-direction: row; /* Stack elements for better readability */
