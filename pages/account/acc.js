@@ -293,14 +293,9 @@ function deleteTransaction(id) {
 
       updateUI();
 
-      Swal.fire({
-        imageUrl: "../../image/tickk.png",
-        imageWidth: 80,
-        imageHeight: 80,
-        customClass: { image: "custom-image" },
-        title: "Deleted!",
-        text: "Your transaction has been deleted",
-      });
+     
+
+      
     }
   });
 }
