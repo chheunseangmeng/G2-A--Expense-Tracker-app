@@ -17,6 +17,9 @@ function updateTransactionTable() {
   transactions.forEach((transaction) => {
     const row = document.createElement("tr");
     row.innerHTML = `
+      <td>
+        <input type="checkbox" class="transaction-checkbox" data-id="${transaction.id}">
+      </td>
       <td>${transaction.category}</td>
       <td>$${transaction.amount.toFixed(2)}</td>
       <td>${getMonthName(transaction.month)}</td>
@@ -32,6 +35,7 @@ function updateTransactionTable() {
     transactionList.appendChild(row);
   });
 }
+
 
 // Edit Transaction Function
 function editTransaction(id) {
