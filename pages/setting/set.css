@@ -137,3 +137,103 @@
 
 /* Body and HTML styling for centering */
 /* Login form styling */
+#settingForm {
+  margin-left: 300px;
+  background-color: #ffffff;
+  padding: 20px 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.setting-form h2 {
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.setting-form-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333333;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #333333;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #007bff;
+}
+
+.btn-view {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  color: #007bff;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.btn-view:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.btn-1 {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-1:hover {
+  background-color: #0056b3;
+}
+
+.btn-view:active {
+  color: #003d80; /* Change the color when the button is clicked */
+}
+
+.btn-1:active {
+  background-color: #003d80; /* Darken the button background when clicked */
+  transform: scale(0.98); /* Add a slight shrinking effect */
+}
+
+@media screen and (max-width:820px) {
+  #settingForm {
+    margin-left: 0;
+    width: 100%;
+    padding: 20px;
+    border-radius: 0;
+    box-shadow: none;
+    max-width: none;
+    background-color: #f4f4f4;
+    
+  }
+}

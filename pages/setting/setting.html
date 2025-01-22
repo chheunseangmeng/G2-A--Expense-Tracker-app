@@ -15,6 +15,7 @@
     <!-- firebase link database -->   
     <script type="module" src="/js/firebase.js" defer></script>
     <link rel="icon" href="/image/expense.png">
+    <link rel="stylesheet" href="../../css/style.css">
   </head> 
         
   <body> 
@@ -55,16 +56,19 @@
             <h2>SETTING</h2>
             <form id="settingForm">
               <div class="setting-form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Enter your email" required>
+                <label for="password">Change Name</label>
+                <input type="password" id="password" placeholder="Enter new name" required>
+                <button type="button" class="btn-view" onclick="enableEdit('email')">Edit</button>
               </div>
               <div class="setting-form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" placeholder="Enter your password" required>
+                <button type="button" class="btn-view" onclick="toggleVisibility('password')">Show</button>
               </div>
               <div class="setting-form-group">
                 <label for="confirmPassword">Confirm Password</label>
                 <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                <button type="button" class="btn-view" onclick="toggleVisibility('confirmPassword')">Show</button>
               </div>
               <div class="setting-form-group">
                 <button type="submit" class="btn-1">Update</button>
