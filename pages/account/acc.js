@@ -33,41 +33,67 @@ cancelSavingButton.addEventListener("click", () => {
   savingInput.value = "";
 });
 
-// Function to update UI
+
+// Update UI with Checkbox Event (When Clicked, Deduct from Savings/Income)
 function updateUI() {
   totalSavingElement.textContent = `$${totalSaving.toFixed(2)}`;
   totalIncomeElement.textContent = `$${totalIncome.toFixed(2)}`;
   totalExpensesElement.textContent = `$${totalExpenses.toFixed(2)}`;
 
-  // Clear transaction list
   transactionList.innerHTML = "";
 
-  // Populate transaction list
   transactions.forEach((transaction) => {
     const row = document.createElement("tr");
 
-    // Display category, amount, and month in the table
     row.innerHTML = `
-      <td>${transaction.category}</td> <!-- Category -->
-      <td>$${transaction.amount.toFixed(2)}</td> <!-- Amount -->
-      <td>${getMonthName(transaction.month)}</td> <!-- Display the month -->
+      <td><input type="checkbox" class="category-checkbox" data-id="${transaction.id}" ${transaction.deducted ? 'checked' : ''}></td>
+      <td>${transaction.category}</td>
+      <td>$${transaction.amount.toFixed(2)}</td>
+      <td>${getMonthName(transaction.month)}</td>
       <td>
-        <button class="btn edit-btn" onclick="editTransaction(${
-          transaction.id
-        })">
+        <button class="btn edit-btn" onclick="editTransaction(${transaction.id})">
           <i class="fa-solid fa-pen-to-square"></i>
         </button>
-        <button class="btn delete-btn" onclick="deleteTransaction(${
-          transaction.id
-        })">
+        <button class="btn delete-btn" onclick="deleteTransaction(${transaction.id})">
           <i class="fa-solid fa-trash-can"></i>
         </button>
       </td>
     `;
 
-    transactionList.appendChild(row); // Append to the table
+    // Add event listener to checkbox
+    const checkbox = row.querySelector(".category-checkbox");
+    checkbox.addEventListener("change", (event) => {
+      const isChecked = event.target.checked;
+      const transactionId = event.target.dataset.id;
+      const transaction = transactions.find((t) => t.id === transactionId);
+
+      if (isChecked && !transaction.deducted) {
+        // Deduct from savings and income when checked
+        totalSaving -= transaction.amount;
+        totalIncome -= transaction.amount;
+        transaction.deducted = true; // Mark as deducted
+      } else if (!isChecked && transaction.deducted) {
+        // Add back to savings and income when unchecked
+        totalSaving += transaction.amount;
+        totalIncome += transaction.amount;
+        transaction.deducted = false; // Mark as not deducted
+      }
+
+      // Save updated data to localStorage
+      localStorage.setItem("transactions", JSON.stringify(transactions));
+      localStorage.setItem("totalSaving", totalSaving);
+      localStorage.setItem("totalIncome", totalIncome);
+
+      // Update UI
+      updateUI();
+    });
+
+    transactionList.appendChild(row);
   });
 }
+
+
+updateUI();
 
 // Helper function to convert month number to month name
 function getMonthName(monthNumber) {
@@ -118,7 +144,7 @@ addSavingButton.addEventListener("click", () => {
   } else {
     // Show error message
     Swal.fire({
-      imageUrl: "../../image/tickk.png",
+      imageUrl: "../../image/delete.png",
       imageWidth: 80,
       imageHeight: 80,
       customClass: { image: "custom-image-delete" },
@@ -128,13 +154,14 @@ addSavingButton.addEventListener("click", () => {
   }
 });
 
-// // Expense Submission Function
+
+// Expense Submission Function
 transactionForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const expenseAmount = parseFloat(transactionAmountInput.value);
   const category = transactionCategoryInput.value;
-  const month = transactionMonthInput.value; // Get selected month
+  const month = transactionMonthInput.value;
 
   if (!category || isNaN(expenseAmount) || expenseAmount <= 0 || !month) {
     Swal.fire({
@@ -148,69 +175,70 @@ transactionForm.addEventListener("submit", (event) => {
     return;
   }
 
-  if (expenseAmount > totalSaving) {
-    Swal.fire({
-      imageUrl: "../../image/delete.png",
-      imageWidth: 80,
-      imageHeight: 80,
-      customClass: { image: "custom-image-delete" },
-      title: "Error",
-      text: "Not enough savings!",
-    });
-    return;
-  }
+  // Add expense to table but don't subtract from saving/income yet
+  const transaction = {
+    id: Date.now(),
+    category,
+    amount: expenseAmount,
+    month,
+  };
 
-  if (editId !== null) {
-    const index = transactions.findIndex(
-      (transaction) => transaction.id === editId
-    );
-    transactions[index] = {
-      id: editId,
-      category,
-      amount: expenseAmount,
-      month,
-    }; // Include the month
-    editId = null;
-    Swal.fire({
+  transactions.push(transaction);
 
-      imageUrl: "../../image/tickk.png",
-      imageWidth: 80,
-      imageHeight: 80,
-      customClass: { image: "custom-image" },
-      title: "Success update!",
-      text: "Transaction updated successfully",
-    });
-  } else {
-    const transaction = {
-      id: Date.now(),
-      category,
-      amount: expenseAmount,
-      month,
-    }; // Include the month
-    transactions.push(transaction);
-    Swal.fire({
-      imageUrl: "../../image/tickk.png",
-      imageWidth: 80,
-      imageHeight: 80,
-      customClass: { image: "custom-image" },
-      title: "Transaction!",
-      text: "Transaction added successfully!",
-    });
-  }
-
-  totalSaving -= expenseAmount;
-  totalIncome -= expenseAmount;
-  totalExpenses += expenseAmount;
-
-  // Save updated data to localStorage
+  // Save updated data to localStorage without affecting savings/income
   localStorage.setItem("transactions", JSON.stringify(transactions));
-  localStorage.setItem("totalSaving", totalSaving);
-  localStorage.setItem("totalIncome", totalIncome);
-  localStorage.setItem("totalExpenses", totalExpenses);
 
   updateUI();
   transactionForm.reset();
 });
+
+// Update UI to display checkbox for each expense
+function updateUI() {
+  totalSavingElement.textContent = `$${totalSaving.toFixed(2)}`;
+  totalIncomeElement.textContent = `$${totalIncome.toFixed(2)}`;
+  totalExpensesElement.textContent = `$${totalExpenses.toFixed(2)}`;
+
+  transactionList.innerHTML = "";
+
+  transactions.forEach((transaction) => {
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+      <td><input type="checkbox" class="category-checkbox" data-id="${transaction.id}"></td>
+      <td>${transaction.category}</td> 
+      <td>$${transaction.amount.toFixed(2)}</td> 
+      <td>${getMonthName(transaction.month)}</td> 
+      <td>
+        <button class="btn edit-btn" onclick="editTransaction(${transaction.id})">
+          <i class="fa-solid fa-pen-to-square"></i>
+        </button>
+        <button class="btn delete-btn" onclick="deleteTransaction(${transaction.id})">
+          <i class="fa-solid fa-trash-can"></i>
+        </button>
+      </td>
+    `;
+
+    // Add checkbox event listener to subtract from saving/income when checked
+    const checkbox = row.querySelector(".category-checkbox");
+    checkbox.addEventListener("change", () => {
+      if (checkbox.checked) {
+        totalSaving -= transaction.amount;
+        totalIncome -= transaction.amount;
+        totalExpenses += transaction.amount;
+
+        // Save updated data to localStorage after checkbox is checked
+        localStorage.setItem("totalSaving", totalSaving);
+        localStorage.setItem("totalIncome", totalIncome);
+        localStorage.setItem("totalExpenses", totalExpenses);
+
+        updateUI(); // Update UI to reflect new totals
+      }
+    });
+
+    transactionList.appendChild(row);
+  });
+}
+
 
 
 // Edit Transaction Function
