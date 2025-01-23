@@ -193,6 +193,7 @@ input[type="password"]:focus {
   font-size: 14px;
   cursor: pointer;
   padding: 5px;
+  padding-top: 25px;
 }
 
 .btn-view:hover {
