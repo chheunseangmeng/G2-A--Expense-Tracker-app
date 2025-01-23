@@ -337,6 +337,6 @@ input[type="password"]:focus {
     font-size: 14px;
   }
   .btn-view {
-    margin-top: 12px;
+    margin-top: 1px;
   }
 }
