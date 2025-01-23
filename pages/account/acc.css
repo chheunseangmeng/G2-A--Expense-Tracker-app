@@ -419,7 +419,11 @@ body {
     font-size: 20px;
     margin-left: -20px;
   }
-  .edit-btn, .delete-btn:hover{
+  .delete-btn:hover{
+    background: none;
+    box-shadow: none;
+  }
+  .edit-btn:hover{
     background: white;
     box-shadow: none;
   }

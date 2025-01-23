@@ -126,3 +126,53 @@
     align-items: center;
   }
 }
+
+
+/* Styles for iPhone 14 Plus */
+@media only screen and (max-width: 428px) {
+
+  #the-total-card, #the-income-card, #the-expense-card{
+    width: 500px;
+  }
+  .select-categories{
+    width: 150px;
+    margin-top: -52.5vh;
+    position: absolute;
+    margin-left:-40px ;
+  }
+  .input{
+    width: 150px;
+    margin-top:8vh;
+    position: absolute;
+    margin-left:-165px ;
+    width: 370px;
+  }
+  .select-month{
+    width: 150px;
+    margin-top: -38vh;
+    position: absolute;
+    margin-left:-135px ; 
+  }
+  .btn-mobile{
+    position: relative;
+    left: -185px;
+    top: -165px;
+  }
+
+  .table-container{
+    width: 100%;
+  
+  }
+  .table{
+    width: 90%;
+    padding: 5px;
+    position: absolute;
+    left: 0;
+    top: 40vh;
+  }
+  th{
+    width: 90px;
+    font-size: 12px;
+  }
+}
+
