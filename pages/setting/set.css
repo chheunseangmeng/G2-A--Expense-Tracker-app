@@ -237,3 +237,101 @@ input[type="password"]:focus {
     
   }
 }
+
+/* Responsive Design for Mobile (max-width: 428px) */
+@media (max-width: 428px) {
+  .container-website {
+    flex-direction: column;
+  }
+
+  .left-side {
+    width: 100%;
+    padding: 10px;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    align-items: flex-start;
+  }
+
+  .left-side i,
+  .left-side span {
+    font-size: 1.5rem;
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+
+  .pages {
+    margin-top: 20px;
+  }
+
+  .pages p {
+    font-size: 14px;
+    padding: 10px;
+    padding-left: 10px;
+  }
+
+  .pages i {
+    font-size: 14px;
+    margin-left: 10px;
+  }
+
+  .btn-2 {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .right-side {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .right-side h1 {
+    font-size: 1.5rem;
+    padding: 15px;
+  }
+
+  .user-account {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .profile-home {
+    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .profile-home img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .profile-home p,
+  .profile-home span {
+    font-size: 14px;
+  }
+
+  #settingForm {
+    margin-left: 18px;
+    width: 90%;
+    padding: 15px;
+    background: #cacaca;
+  }
+
+  .setting-form h2 {
+    font-size: 1.2rem;
+    padding-top: 20px;
+    padding-bottom: 15px;
+  }
+
+  input[type="email"],
+  input[type="password"] {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  .btn-1 {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
