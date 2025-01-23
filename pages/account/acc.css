@@ -65,7 +65,7 @@ body {
   .btn-report {
     padding: 12px;
     background-color: rgb(253, 148, 9);
-    color: #000;
+    color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -314,4 +314,114 @@ body {
   .summary{
     width: 70%;
   }
+}
+
+/* Styles for iPhone 14 Plus */
+@media only screen and (max-width: 428px) {
+  .left-side{
+    display: none;
+  }
+  .user-account{
+    width: 100%;
+    display: block;
+    display: flex;
+  }
+  .profile-home img{
+    width: 35px;
+    height: 35px;
+  }
+  .profile-home{
+    margin-top: -45vh;
+  }
+  .morning span{
+    font-size: 20px;
+    margin-left: -1px;
+  }
+  .fa-list-ul{
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    font-size: 30px;
+    color: white;
+    opacity: 1;
+  }
+  .let-hide{
+    display: none ;
+  }
+  .summary{
+    display: flex;
+    width: 50%;flex-wrap: wrap;
+  }
+  #the-total-card, #the-income-card, #the-expense-card{
+    width: 500px;
+  }
+  /* form{
+  } */
+  .select-categories{
+    width: 150px;
+    margin-top: -52.5vh;
+    position: absolute;
+    margin-left:-40px ;
+  }
+  .input{
+    width: 150px;
+    margin-top: -45vh;
+    position: absolute;
+    margin-left:-87px ;
+  }
+  .select-month{
+    width: 150px;
+    margin-top: -38vh;
+    position: absolute;
+    margin-left:-135px ; 
+  }
+  .btn-mobile{
+    position: relative;
+    left: -185px;
+    top: -165px;
+  }
+  .table-container{
+    width: 100%;
+
+  }
+  .table{
+    width: 90%;
+    padding: 5px;
+    position: absolute;
+    left: 0;
+    top: 70vh;
+  }
+  th{
+    width: 90px;
+    font-size: 12px;
+  }
+  .edit-btn,
+  .delete-btn {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 20px;
+    text-align: center;
+    margin-left: -10px;
+  }
+  .delete-btn{
+    /* background: red; */
+    background: none;
+    color: red;
+    font-size: 20px;
+  }
+  .edit-btn{
+    background: none;
+    color: blue;
+    font-size: 20px;
+    margin-left: -20px;
+  }
+  .edit-btn, .delete-btn:hover{
+    background: white;
+    box-shadow: none;
+  }
+  
 }
