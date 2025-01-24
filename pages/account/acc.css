@@ -283,6 +283,12 @@ body {
   border: 2px solid gray;
   border-radius: 4px;
 }
+.mobile-header{
+  display: none;
+}
+.container-website{
+  margin-left: 40vh;
+}
 
 
   /* tablet screen - responsive */
@@ -290,6 +296,12 @@ body {
     .container-website {
       flex-direction: row; 
    }
+   .mobile-header{
+    display: none;
+  }
+   .fa-bars, .fa-x{
+    display: none;
+  }
    .card{
     width: 31%;
    }
@@ -315,10 +327,40 @@ body {
   .form{
    display: flex;
    gap: 10px;
- 
+  }
+  .container-account{
+    margin-left: -4vh;
+  }
+  select{
+    width: 125px;
+  }
+  .table{
+    width: 100%;
   }
   .summary{
     width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 10vh;
+  }
+  #export-pdf-btn{
+    width: 105px;
+  }
+  #the-total-card{
+    width: 30vh;
+  }
+  #the-income-card{
+    width: 153px;
+  }
+  #the-expense-card{
+    position: absolute;
+    margin-top: 15vh;
+    margin-left: 16vh;
+    width: 153px;
+  }
+  .profile-home{
+    position: relative;
+    margin-top: -120px;
   }
 }
 
@@ -326,9 +368,6 @@ body {
 @media only screen and (max-width: 428px) {
   .container-website {
     height: 100%;
-  }
-  .left-side{
-    display: none;
   }
   .user-account{
     width: 100%;
@@ -440,5 +479,70 @@ body {
     top: -15vh;
     left: -32vh;    
   }
-  
+  .left-side {
+    transform: translateX(-100%);
+    position: fixed;
+    height: 100vh;
+    width: 250px;
+    color: white;
+    padding: 20px;
+    top: 0;
+    left: 0;
+    transition: transform 0.3s ease-in-out;
+    margin-top: 10px;
+  }
+
+  /* Show Sidebar when Active */
+  .left-side.active {
+    transform: translateX(0);
+  }
+
+  /* Mobile Header */
+  .mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2000;
+  }
+
+  /* Menu Toggle Button */
+  #menuToggle {
+    position: relative;
+    background: none;
+    z-index: 1101;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  .span-expense{
+    margin-left: -80px;
+    position: absolute;
+    margin-top: 70px;
+  }
+  .container-website{
+    margin-left:0;
+  }
+  .fa-bars, .fa-x{
+    display:block;
+  }
+
 }
+.left-side {
+  width: 250px;
+  position: fixed;
+  height: 100vh;
+  padding: 20px;
+  left: 0;
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000; 
+  height: 100%;
+}
+
+
+

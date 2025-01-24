@@ -93,11 +93,20 @@
   .delete-btn:hover {
     background-color: darkred;
   }  
+  .container-website{
+    margin-left: 40vh;
+  }
+  .fa-bars, .fa-x{
+    display: none;
+  }
 
   @media screen and (max-width: 820px) {
     .container-website {
-      flex-direction: row; /* Stack elements for better readability */
+      flex-direction: row;
    }
+   .fa-bars, .fa-x{
+    display: none;
+  }
    .card{
     width: 32%;
    }
@@ -174,5 +183,78 @@
     width: 90px;
     font-size: 12px;
   }
+
+  .left-side {
+    transform: translateX(-100%);
+    position: fixed;
+    height: 100vh;
+    width: 250px;
+    color: white;
+    padding: 20px;
+    top: 0;
+    left: 0;
+    transition: transform 0.3s ease-in-out;
+    margin-top: 10px;
+  }
+
+  /* Show Sidebar when Active */
+  .left-side.active {
+    transform: translateX(0);
+  }
+
+  /* Mobile Header */
+  .mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1100;
+  }
+
+  /* Menu Toggle Button */
+  #menuToggle {
+    position: relative;
+    background: none;
+    z-index: 1101;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  .span-expense{
+    margin-left: -80px;
+    position: absolute;
+    margin-top: 70px;
+  }
+  .container-website{
+    margin-left:0;
+  }
+  .fa-bars, .fa-x{
+    display:block;
+  }
+
+
 }
+
+.left-side {
+  width: 250px;
+  color: white;
+  position: fixed;
+  height: 100%;
+  padding: 20px;
+  left: 0;
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+}
+.fa-bars, .fa-x{
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+
+
 

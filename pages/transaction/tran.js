@@ -113,3 +113,24 @@ function getMonthName(monthNumber) {
 }
 
 updateTransactionTable();
+
+
+document.getElementById("menuToggle").addEventListener("click", function () {
+  let sidebar = document.querySelector(".left-side");
+  let menuIcon = document.getElementById("menuToggle");
+  let container = document.querySelector(".container-website");
+
+  sidebar.classList.toggle("active"); // Toggle Sidebar
+
+  // Check if .container-website exists before adding class
+  if (container) {
+    container.classList.toggle("overlay-active");
+  }
+ 
+  // Change button icon
+  if (sidebar.classList.contains("active")) {
+    menuIcon.innerHTML = '<i class="fa-solid fa-x"></i>'; // Change to "X"
+  } else {
+    menuIcon.innerHTML = '<i class="fa-solid fa-bars"></i>'; // Change back to menu
+  }
+});

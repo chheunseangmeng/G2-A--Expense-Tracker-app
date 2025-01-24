@@ -26,33 +26,37 @@
   <body>
    
     <div class="container-website">
-        <div class="left-side">
-          <div class="expense-title">
-            <i class="fa-solid fa-wallet"></i>
-            <span class="span-expense">Expense</span>
-          </div>
-          <div class="pages">
-            <div class="page-icon ">
-              <i class="fa-solid fa-list icon"></i>
-              <p><a href="../../index.html">DASHBOARD</a></p>
-            </div>
-            <div class="page-icon  active">
-              <i class="fa-solid fa-money-bill-transfer icon"></i>
-              <p><a href="../transaction/transaction.html">TRANSACTION</a></p>
-            </div>
-            <div class="page-icon ">
-              <i class="fa-solid fa-user icon"></i>
-              <p><a href="../account/account.html">ACCOUNT</a></p>
-            </div>
-            <div class="page-icon">
-              <i class="fa-solid fa-gear icon"></i>
-              <p><a href="/pages/setting/setting.html">SETTING</a></p>
-            </div>
-          </div>
-          <button class="btn-2" id="logoutButton">Log out</button>
+      <header class="mobile-header">
+        <button id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+      </header>
+      
+      <div class="left-side">
+        <div class="expense-title">
+          <i class="fa-solid fa-wallet"></i>
+          <span class="span-expense">Expense</span>
         </div>
+        <div class="pages">
+          <div class="page-icon">
+            <i class="fa-solid fa-list icon"></i>
+            <p><a href="../../index.html">DASHBOARD</a></p>
+          </div>
+          <div class="page-icon active">
+            <i class="fa-solid fa-money-bill-transfer icon"></i>
+            <p><a href="../transaction/transaction.html">TRANSACTION</a></p>
+          </div>
+          <div class="page-icon">
+            <i class="fa-solid fa-user icon"></i>
+            <p><a href="../account/account.html">ACCOUNT</a></p>
+          </div>
+          <div class="page-icon">
+            <i class="fa-solid fa-gear icon"></i>
+            <p><a href="/pages/setting/setting.html">SETTING</a></p>
+          </div>
+        </div>
+        <button class="btn-2" id="logoutButton">Log out</button>
+      </div>
+       
         <div class="right-side">
-          <i class="fa-solid fa-list-ul"></i>
           <h1>TRANSACTION</h1>
           <div class="user-account">
             <div class="summary">

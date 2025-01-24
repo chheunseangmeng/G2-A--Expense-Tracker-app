@@ -8,22 +8,28 @@
     <link rel="stylesheet" href="./css/style.css" />
     <script src="./js/main.js" defer></script>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
     <!-- SweetAlert CDN -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- firebase link database -->   
+    <!-- firebase link database -->
     <script type="module" src="./js/firebase.js" defer></script>
-    <link rel="icon" href="./image/expense.png">
+    <link rel="icon" href="./image/expense.png" />
 
     <!-- Notify js link  -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
-    
-  </head> 
-      
-  <body> 
+  </head>
+
+  <body>
     <div class="container-website">
+      <header class="mobile-header">
+        <button id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+      </header>
+
       <div class="left-side">
         <div class="expense-title">
           <i class="fa-solid fa-wallet"></i>
@@ -44,7 +50,7 @@
           </div>
           <div class="page-icon">
             <i class="fa-solid fa-gear icon"></i>
-            <p><a href="/pages/setting/setting.html">SETTING</a></p>
+            <p><a href="./pages/setting/setting.html">SETTING</a></p>
           </div>
         </div>
         <button class="btn-2">
@@ -54,9 +60,10 @@
           <button id="logoutBtn">Log Out</button>
         </div>
       </div>
+
       <!-- right bar -->
       <div class="right-side">
-        <h1> <i class="fa-solid fa-list-ul"></i> DASHBOARD</h1>
+        <h1>DASHBOARD</h1>
         <div class="user-account">
           <div class="profile-home">
             <img src="./image/user-icon.png" alt="" />
@@ -89,9 +96,7 @@
             <a href="#" class="icon"
               ><img src="./image/new twitter.png" alt=""
             /></a>
-            <a href="#" class="icon"
-              ><img src="./image/apple.png" alt=""
-            /></a>
+            <a href="#" class="icon"><img src="./image/apple.png" alt="" /></a>
           </div>
           <span>or use your email for registeration</span>
           <input type="text" id="name" placeholder="Name" />
@@ -105,9 +110,7 @@
         <form>
           <h1>Sign In</h1>
           <div class="social-icons">
-            <a href="#" class="icon"
-              ><img src="./image/apple.png" alt=""
-            /></a>
+            <a href="#" class="icon"><img src="./image/apple.png" alt="" /></a>
             <a href="#" class="icon"
               ><img src="./image/new twitter.png" alt=""
             /></a>
