@@ -22,7 +22,13 @@
 
     <link rel="icon" href="../../image/user-icon.png">
     <!-- font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">    
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"> 
+  <!-- export pdf file link -->
+ <!-- jsPDF Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- jsPDF AutoTable Plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.30/jspdf.plugin.autotable.min.js"></script>
+
 
   </head>
 
@@ -144,6 +150,9 @@
                 <button type="submit" class="btn-report  btn-mobile" id="btn-report">
                   Report
                 </button>
+              </div>
+              <div>
+                <button id="export-pdf-btn">Export to PDF</button>
               </div>
 
               <!-- Chart container with cancel button -->

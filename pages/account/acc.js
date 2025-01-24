@@ -389,3 +389,85 @@ document.addEventListener("DOMContentLoaded", () => {
     return months[monthNumber - 1];
   }
 });
+
+// -----------------------------------------------------------------------------------
+
+
+document.getElementById("export-pdf-btn").addEventListener("click", function () {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  // Set title
+  doc.text("Expense Monthly Report", 14, 10);
+
+  // Get the transaction list (table body)
+  const tableBody = document.getElementById("transaction-list");
+
+  if (!tableBody || tableBody.children.length === 0) {
+    Swal.fire({
+      imageUrl: "../../image/delete.png",
+      imageWidth: 80,
+      imageHeight: 80,
+      customClass: { image: "custom-image-delete" },
+      title: "Error",
+      text: "No transactions available to export!",
+    });
+    return; // Stop execution if no data is displayed
+  }
+
+  const rows = [];
+
+  // Extract displayed table data
+  tableBody.querySelectorAll("tr").forEach(tr => {
+    const row = [];
+    tr.querySelectorAll("td").forEach((td, index) => {
+      if (index === 2) {  
+        const monthNumber = td.innerText.trim();  
+        row.push(getMonthName(monthNumber));  
+      } else if (index === 3) {  
+        row.push(td.innerText.trim()); 
+      } else {
+        row.push(td.innerText.trim()); 
+      }
+    });
+    if (row.length > 0) {
+      rows.push(row);
+    }
+  });
+
+  if (rows.length === 0) {
+    Swal.fire({
+      imageUrl: "../../image/delete.png",
+      imageWidth: 80,
+      imageHeight: 80,
+      customClass: { image: "custom-image-delete" },
+      title: "Error",
+      text: "No transaction data found in the table!",
+    });
+    return;
+  }
+
+  // Generate table in PDF using AutoTable
+  doc.autoTable({
+    head: [["Check", "Categories", "Amount", "Monthly"]],
+    body: rows,
+    startY: 20
+  });
+
+  // Save the PDF
+  doc.save("Expense_Report.pdf");
+});
+
+// Helper function to convert month number to month name
+function getMonthName(monthNumber) {
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  return months[parseInt(monthNumber) - 1];
+}
+
+
+
+
+
