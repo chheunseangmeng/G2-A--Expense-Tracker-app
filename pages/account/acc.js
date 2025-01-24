@@ -468,6 +468,3 @@ function getMonthName(monthNumber) {
 }
 
 
-
-
-

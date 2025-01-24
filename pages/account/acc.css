@@ -324,6 +324,9 @@ body {
 
 /* Styles for iPhone 14 Plus */
 @media only screen and (max-width: 428px) {
+  .container-website {
+    height: 100%;
+  }
   .left-side{
     display: none;
   }
@@ -367,35 +370,34 @@ body {
     width: 150px;
     margin-top: -52.5vh;
     position: absolute;
-    margin-left:-40px ;
+    margin-left:-25px ;
   }
   .input{
     width: 150px;
     margin-top: -45vh;
     position: absolute;
-    margin-left:-87px ;
+    margin-left:-48px ;
   }
   .select-month{
     width: 150px;
     margin-top: -38vh;
     position: absolute;
-    margin-left:-135px ; 
+    margin-left:-70px ; 
   }
   .btn-mobile{
     position: relative;
-    left: -185px;
+    left: -90px;
     top: -165px;
   }
   .table-container{
     width: 100%;
-
   }
   .table{
     width: 90%;
     padding: 5px;
     position: absolute;
     left: 0;
-    top: 70vh;
+    top: 72vh;
   }
   th{
     width: 90px;
@@ -432,6 +434,11 @@ body {
   .edit-btn:hover{
     background: white;
     box-shadow: none;
+  }
+  #export-pdf-btn{
+    position: relative;
+    top: -15vh;
+    left: -32vh;    
   }
   
 }
