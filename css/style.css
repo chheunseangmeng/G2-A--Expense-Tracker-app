@@ -515,7 +515,15 @@ input[type="checkbox"] {
 /* Styles for iPhone 14 Plus */
 @media only screen and (max-width: 428px) {
   
-  
+  .container-website {
+    height: 100%;
+  }
+  .right-side{
+    position: absolute;
+    left: 200px;
+    width: 140%;
+    margin-left: -26vh;
+  }
   .user-account{
     width: 100%;
   }
