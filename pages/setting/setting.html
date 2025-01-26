@@ -8,18 +8,25 @@
     <link rel="stylesheet" href="/pages/setting/set.css" />
     <script src="/pages/setting/set.js" defer></script>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
     <!-- SweetAlert CDN -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- firebase link database -->   
+    <!-- firebase link database -->
     <script type="module" src="/js/firebase.js" defer></script>
-    <link rel="icon" href="../../image/setting.png">
-    <link rel="stylesheet" href="../../css/style.css">
-  </head> 
-        
-  <body> 
+    <link rel="icon" href="../../image/setting.png" />
+    <link rel="stylesheet" href="../../css/style.css" />
+  </head>
+
+  <body>
     <div class="container-website">
+      <header class="mobile-header">
+        <button id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+      </header>
+      
       <div class="left-side">
         <div class="expense-title">
           <i class="fa-solid fa-wallet"></i>
@@ -28,55 +35,57 @@
         <div class="pages">
           <div class="page-icon">
             <i class="fa-solid fa-list icon"></i>
-            <p><a href="/index.html">DASHBOARD</a></p>
+            <p><a href="../../index.html">DASHBOARD</a></p>
           </div>
           <div class="page-icon">
             <i class="fa-solid fa-money-bill-transfer icon"></i>
-            <p><a href="/pages/transaction/transaction.html">TRANSACTION</a></p>
+            <p><a href="../transaction/transaction.html">TRANSACTION</a></p>
           </div>
           <div class="page-icon">
             <i class="fa-solid fa-user icon"></i>
-            <p><a href="/pages/account/account.html">ACCOUNT</a></p>
+            <p><a href="../account/account.html">ACCOUNT</a></p>
           </div>
           <div class="page-icon active">
             <i class="fa-solid fa-gear icon"></i>
-            <p><a href="#">SETTING</a></p>
+            <p><a href="../setting/setting.html">SETTING</a></p>
           </div>
         </div>
-        <button class="btn-2">
-          <a href="#" style="text-decoration: none">Log Out</a>
-        </button>
+        <button class="btn-2" id="logoutButton">Log out</button>
       </div>
+      
       <!-- right bar -->
       <div class="right-side">
         <h1>DASHBOARD</h1>
-        <div class="login_form">
-          <!-- Login form container -->
-           <div class="setting-form">
-            <h2>SETTING</h2>
-            <form id="settingForm">
-              <div class="setting-form-group">
-                <label for="password">Change Name</label>
-                <input type="password" id="password" placeholder="Enter new name" required>
-                <button type="button" class="btn-view" onclick="enableEdit('email')">Edit</button>
-              </div>
-              <div class="setting-form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Enter your password" required>
-                <button type="button" class="btn-view" onclick="toggleVisibility('password')">Show</button>
-              </div>
-              <div class="setting-form-group">
-                <label for="confirmPassword">Confirm Password</label>
-                <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
-                <button type="button" class="btn-view" onclick="toggleVisibility('confirmPassword')">Show</button>
-              </div>
-              <div class="setting-form-group">
-                <button type="submit" class="btn-1">Update</button>
-              </div>
-            </form>
-           </div>
+        <div class="user-account">
+          <div class="profile-home">
+            <img src="../../image/user-icon.png" alt="" />
+            <div class="morning">
+              <p>Good morning <span>User</span></p>
+              <p>Let's manage your wallet finance</p>
+            </div>
+          </div>
+          <div class="save"> <button>Save change</button></div>
         </div>
-      </div>
+          <h3>Change Profile Setting</h3>
+          <div class="form-setting">
+            <div class="set-group">
+              <label for="firstname">First name</label> <br>
+              <input type="text" class="user-name-set" placeholder="First name">
+            </div>
+            <div class="set-group">
+              <label for="lastname">last name</label> <br>
+              <input type="text" class="user-name-set" placeholder="Last name">
+            </div>
+            <div class="set-group">
+              <label for="password">Password</label> <br>
+              <input type="text" class="user-name-set" placeholder="Password">
+            </div>
+            <div class="set-group">
+              <label for="comfirmpassword">Comfirm password</label> <br>
+              <input type="text" class="user-name-set" placeholder="Comfirm password">
+            </div>
+          </div>
+          <button class="go-home"><a href="../../index.html">Go to the Dashbaord page  <i class="fa-solid fa-arrow-up-from-bracket"></i></a></button>
     </div>
   </body>
 </html>

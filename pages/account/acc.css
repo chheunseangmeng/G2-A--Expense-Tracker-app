@@ -561,10 +561,9 @@ body {
   .fa-bars, .fa-x{
     display:block;
   }
-
-
-
 }
+
+
 .left-side {
   width: 250px;
   position: fixed;

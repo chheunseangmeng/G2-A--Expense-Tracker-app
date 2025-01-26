@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 /* General Reset */
 * {
   padding: 0;
@@ -428,7 +428,7 @@ span {
 .container-website {
   position: relative;
 }
-#logoutBtn{
+#logoutBtn {
   background: red;
   padding: 10px;
   margin-top: 20px;
@@ -439,33 +439,48 @@ span {
   color: #fff;
   transition: all 0.2s ease-in-out;
 }
-#logoutBtn:hover{
+#logoutBtn:hover {
   background: darkred;
   cursor: pointer;
 }
-.custom-image{
-  border: 3px solid green; 
+.custom-image {
+  border: 3px solid green;
   padding: 5px;
   border-radius: 50px;
 }
-.custom-image-delete{
-  border: 3px solid rgb(184, 0, 0); 
+.custom-image-delete {
+  border: 3px solid rgb(184, 0, 0);
   padding: 5px;
   border-radius: 50px;
 }
 /* Custom style for checkbox */
 input[type="checkbox"] {
-  width: 20px;  /* Adjust the width */
+  width: 20px; /* Adjust the width */
   height: 20px; /* Adjust the height */
   transform: scale(1.5); /* Makes it 1.5 times larger */
-  accent-color: #4CAF50; /* Optional: changes the color of the checkbox */
+  accent-color: #4caf50; /* Optional: changes the color of the checkbox */
   cursor: pointer;
 }
-.container-website{
+.container-website {
   margin-left: 40vh;
 }
-.mobile-header{
+.mobile-header {
   display: none;
+}
+.left-side {
+  width: 250px;
+  color: white;
+  position: fixed;
+  height: 100%;
+  padding: 20px;
+  left: 0;
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+}
+.fa-bars,
+.fa-x {
+  margin-left: 20px;
+  margin-top: 20px;
 }
 
 @media screen and (max-width: 820px) {
@@ -473,15 +488,15 @@ input[type="checkbox"] {
     flex-direction: row;
     width: 70%;
   }
-  .right-side{
+  .right-side {
     margin-left: -15vh;
   }
-  .mobile-header{
+  .mobile-header {
     display: none;
   }
   .left-side {
-    width: 30%; 
-  } 
+    width: 30%;
+  }
 
   .right-side {
     width: 100%;
@@ -492,7 +507,6 @@ input[type="checkbox"] {
     font-size: 22px;
     padding: 15px;
   }
-
 
   .profile-home img {
     width: 40px;
@@ -507,31 +521,33 @@ input[type="checkbox"] {
   .animated-text span {
     font-size: 2rem;
   }
-  .fa-list-ul{
+  .fa-list-ul {
     opacity: 0;
   }
 }
 
 /* Styles for iPhone 14 Plus */
 @media only screen and (max-width: 428px) {
-  
   .container-website {
     height: 100%;
   }
-  .right-side{
+  .auth-wrapper-mobile {
+    display: block;
+  }
+  .right-side {
     position: absolute;
     left: 200px;
     width: 140%;
     margin-left: -26vh;
   }
-  .user-account{
+  .user-account {
     width: 100%;
   }
-  .profile-home img{
+  .profile-home img {
     width: 50px;
     height: 50px;
   }
-  .fa-list-ul{
+  .fa-list-ul {
     position: absolute;
     top: 30px;
     left: 40px;
@@ -539,7 +555,7 @@ input[type="checkbox"] {
     color: white;
     opacity: 1;
   }
-  .summary{
+  .summary {
     display: flex;
   }
 
@@ -585,34 +601,35 @@ input[type="checkbox"] {
     font-size: 24px;
     cursor: pointer;
   }
-  .span-expense{
+  .span-expense {
     margin-left: -80px;
     position: absolute;
     margin-top: 70px;
   }
-  .container-website{
-    margin-left:0;
+  .container-website {
+    margin-left: 0;
   }
-  .fa-bars, .fa-x{
-    display:block;
+  .fa-bars,
+  .fa-x {
+    display: block;
   }
-
-
+  .container {
+    margin-top: 20vh;
+  }
+  .container h1 {
+    font-size: 20px;
+    text-align: center;
+  }
+  .social-icons {
+    gap: 0;
+  }
+  .form-container input {
+    width: 180px;
+  }
+  .form-container button {
+    width: 180px;
+  }
+  .form-container span {
+    text-align: center;
+  }
 }
-
-
-.left-side {
-  width: 250px;
-  color: white;
-  position: fixed;
-  height: 100%;
-  padding: 20px;
-  left: 0;
-  transition: transform 0.3s ease-in-out;
-  z-index: 1000;
-}
-.fa-bars, .fa-x{
-  margin-left: 20px;
-  margin-top: 20px;
-}
-
