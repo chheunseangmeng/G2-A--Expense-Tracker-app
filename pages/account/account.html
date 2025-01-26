@@ -69,12 +69,14 @@
           <h1>  ACCOUNT</h1>
         <div class="user-account">
           <div class="profile-home">
-            <img src="../../image/user-icon.png" alt="" />
+            <img id="profileImage" src="../../image/user-icon.png" alt="Profile Image" />
+            <input type="file" id="imageUpload" accept="image/*" style="display: none" />
             <div class="morning">
-              <p>Good morning <span>Seangmeng</span></p>
-              <p class="let-hide">Let's manage your wallet finance</p>
+              <p>Good morning <span id="username">User</span></p>
+              <p>Let's manage your wallet finance</p>
             </div>
           </div>
+          
           <div class="summary">
             <div class="card" id="the-total-card">
               <h5>Total Saving</h5>

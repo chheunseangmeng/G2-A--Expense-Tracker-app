@@ -121,7 +121,7 @@ span {
 }
 .profile-home img {
   width: 70px;
-  height: 75px;
+  height: 73px;
   border-radius: 50%;
   margin-bottom: 10px;
 }
@@ -133,6 +133,32 @@ span {
   font-weight: bold;
   color: #000;
 }
+
+.profile-home {
+  position: relative;
+}
+
+#nameInput, #saveNameBtn {
+  position: absolute; /* Position them off-screen */
+  top: -9999px;       /* Move them far off the screen */
+  left: -9999px;
+}
+
+
+#profileImage {
+  cursor: pointer; /* Make the image clickable */
+}
+
+#imageUpload {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0; /* Hide the file input */
+  cursor: pointer; /* Allow clicking the file input through the image */
+}
+
 .animated-text {
   font-size: 5.3rem;
   font-weight: 600;

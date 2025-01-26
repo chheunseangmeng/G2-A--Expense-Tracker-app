@@ -179,7 +179,7 @@ document.getElementById("logoutBtn").addEventListener("click", function() {
       }
   });
 });
-
+// icon /////////
 document.getElementById("menuToggle").addEventListener("click", function () {
   let sidebar = document.querySelector(".left-side");
   let menuIcon = document.getElementById("menuToggle");
@@ -201,6 +201,38 @@ document.getElementById("menuToggle").addEventListener("click", function () {
 });
 
 
+// profile ////
+document.addEventListener("DOMContentLoaded", () => {
+  // Load the stored profile image if it exists
+  const storedImage = localStorage.getItem('profileImage');
+  if (storedImage) {
+    document.getElementById('profileImage').src = storedImage;
+  }
+
+  const profileImage = document.getElementById('profileImage');
+  const imageUpload = document.getElementById('imageUpload');
+
+  // Trigger the file input click when the profile image is clicked
+  profileImage.addEventListener('click', () => {
+    imageUpload.click();
+  });
+
+  imageUpload.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      
+      reader.onload = function(e) {
+        const imageUrl = e.target.result;
+        profileImage.src = imageUrl; // Replace the profile image
+        // Save the new image URL to localStorage
+        localStorage.setItem('profileImage', imageUrl);
+      };
+      
+      reader.readAsDataURL(file);
+    }
+  });
+});
 
 
 
