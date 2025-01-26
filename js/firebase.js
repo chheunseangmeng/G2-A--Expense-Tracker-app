@@ -1,14 +1,15 @@
+
 // Import Firebase modules
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
 // Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDraNbms8xLrnq_dM627WzfRnQa1Ok_EvI",
   authDomain: "g2a--expense-tracker.firebaseapp.com",
   projectId: "g2a--expense-tracker",
-  storageBucket: "g2a--expense-tracker.firebasestorage.app",
+  storageBucket: "g2a--expense-tracker.appspot.com",
   messagingSenderId: "613017930863",
   appId: "1:613017930863:web:916651bc265c695138d19a"
 };
@@ -22,11 +23,11 @@ const db = getDatabase(app);
 const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
-const signUpButton = document.querySelector("button");
+const signUpForm = document.querySelector(".sign-up form");
 
-// Event listener for sign-up button
-signUpButton.addEventListener("click", (e) => {
-  e.preventDefault(); // Prevent form from refreshing page
+// Event listener for form submission
+signUpForm.addEventListener("submit", (e) => {
+  e.preventDefault(); // Prevent form from refreshing
 
   const name = nameInput.value.trim();
   const email = emailInput.value.trim();
@@ -37,37 +38,42 @@ signUpButton.addEventListener("click", (e) => {
     return;
   }
 
-  // Use Firebase Authentication to create a new user
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // User created successfully, now store additional profile data in Realtime Database
-      const user = userCredential.user;
-
-      // Store user profile data in Realtime Database
-      return set(ref(db, "users/" + user.uid), {
-        username: name,
-        email: email,
-        password: password,  // Storing password in the Realtime Database (Not recommended)
-        profilePicture: "default.png", // You can set a default profile picture or leave it empty
-      });
-    })
-    .then(() => {
-      // If data is saved successfully, show success message
-      alert("User registered successfully and data saved in Firebase!");
-    })
-    .catch((error) => {
-      // Firebase Authentication error handling
-      console.error("Error:", error.message);
-      
-      // Handle authentication or database errors
-      if (error.code === "auth/email-already-in-use") {
-        alert("This email is already registered. Please try a different one.");
-      } else if (error.code === "auth/invalid-email") {
-        alert("Invalid email format. Please check your email.");
-      } else {
-        alert("Error: " + error.message);
+  // Check if the password already exists in the database
+  const passwordRef = ref(db, "users");
+  
+  get(passwordRef).then((snapshot) => {
+    let passwordExists = false;
+    
+    snapshot.forEach((childSnapshot) => {
+      const userData = childSnapshot.val();
+      if (userData.password === password) {
+        passwordExists = true;
       }
     });
+
+    if (passwordExists) {
+      alert("This password is already in use by another account. Please choose a different password.");
+      return; // Stop execution here, don't proceed to create user
+    }
+
+    // Create user in Firebase Authentication
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+
+        // Store user profile data in Firebase Realtime Database (don't store password here for security reasons)
+        return set(ref(db, "users/" + user.uid), {
+          username: name,
+          email: email,
+          password: password, // ⚠️ WARNING: Storing passwords in the database is not secure (ideally, passwords should be hashed)
+        });
+      })
+      .then(() => {
+        alert("User registered successfully and data saved in Firebase!");
+      })
+      .catch((error) => {
+        console.error("Error:", error.message);
+        alert("Error: " + error.message);
+      });
+  });
 });
-
-
